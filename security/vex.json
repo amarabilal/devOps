@@ -1,0 +1,24 @@
+{
+  "@context": "https://openvex.dev/ns/v0.2.0",
+  "@id": "https://github.com/YOUR_USERNAME/devops-project/vex/2024-01",
+  "author": "DevOps Project Team",
+  "timestamp": "2024-01-01T00:00:00Z",
+  "version": 1,
+  "tooling": "OpenVEX v0.2.0",
+  "statements": [
+    {
+      "vulnerability": {
+        "name": "CVE-2023-XXXXX",
+        "description": "Example: vulnerability in an indirect dependency"
+      },
+      "products": [
+        {
+          "@id": "pkg:docker/devops-project:latest"
+        }
+      ],
+      "status": "not_affected",
+      "justification": "vulnerable_code_not_in_execute_path",
+      "impact_statement": "The vulnerable function is present in the dependency but is never called by this application. The code path triggering the vulnerability is not reachable."
+    }
+  ]
+}

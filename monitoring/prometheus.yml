@@ -1,0 +1,22 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 10s
+
+alerting:
+  alertmanagers: []
+
+rule_files: []
+
+scrape_configs:
+  # Prometheus se scrape lui-même
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Notre application Flask
+  - job_name: "devops-app"
+    static_configs:
+      - targets: ["app:5000"]
+    metrics_path: "/metrics"
+    scrape_interval: 10s
