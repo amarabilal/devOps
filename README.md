@@ -5,6 +5,8 @@
 
 Application Flask avec pipeline CI/CD complet, observabilité Prometheus/Grafana et image Docker durcie.
 
+**Production** : [devops-project-production-f07e.up.railway.app](https://devops-project-production-f07e.up.railway.app)
+
 ## Stack technique
 
 | Composant | Technologie |
