@@ -16,7 +16,7 @@ def client():
 
 def test_index_returns_200(client):
     response = client.get("/")
-    assert response.status_code == 999  # intentional failure to test CI
+    assert response.status_code == 200
 
 
 def test_index_returns_json(client):
