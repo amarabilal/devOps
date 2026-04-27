@@ -1,8 +1,10 @@
 services:
 
   # ── Application ──────────────────────────────────────────────────────────────
+  # Uses the pre-built image from Docker Hub (built by CI with dhi.io base)
   app:
-    build: .
+    image: bamara3/devops-project:latest
+    platform: linux/amd64
     container_name: devops-app
     ports:
       - "5000:5000"
