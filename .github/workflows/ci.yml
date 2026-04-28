@@ -222,3 +222,30 @@ jobs:
           platforms: linux/amd64,linux/arm64
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+  # ─────────────────────────────────────────────
+  # JOB 6 — Deploy to Railway (CD)
+  # ─────────────────────────────────────────────
+  deploy:
+    name: Deploy to Production (Railway)
+    runs-on: ubuntu-latest
+    needs: [docker-push]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment:
+      name: production
+      url: https://devops-project-production-f07e.up.railway.app
+    steps:
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Trigger redeploy
+        run: railway redeploy --service devops-project --yes
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
+      - name: Health check
+        run: |
+          echo "Waiting for deployment to stabilize..."
+          sleep 30
+          curl --fail --retry 5 --retry-delay 10 \
+            https://devops-project-production-f07e.up.railway.app/health
