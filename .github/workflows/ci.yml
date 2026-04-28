@@ -235,13 +235,8 @@ jobs:
       name: production
       url: https://devops-project-production-f07e.up.railway.app
     steps:
-      - name: Install Railway CLI
-        run: npm install -g @railway/cli
-
-      - name: Trigger redeploy
-        run: railway redeploy --service devops-project --yes
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      - name: Trigger Railway redeploy
+        run: curl -fsSL -X POST "${{ secrets.RAILWAY_DEPLOY_HOOK }}"
 
       - name: Health check
         run: |
